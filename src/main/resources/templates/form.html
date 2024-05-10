@@ -6,9 +6,12 @@
     <link th:href="@{/styles.css}" rel="stylesheet" />
 </head>
 <body>
+<div>
+    <h1>Client Form</h1>
 <form method = 'post' action='menu'>
     Name: <br>
     <input type = 'text' name = 'name'>
+    <br>
     <br>Skin type: <br>
     <select name = 'skintype'>
         <option value = 'oily'>Oily</option>
@@ -16,13 +19,16 @@
         <option value = 'normal'>Normal</option>
         <option value = 'dry'>Dry</option>
         </select><br>
+    <br>
     "Manicure or Pedicure? <br>
     <select name = 'manipedi'>
         <option value = 'manicure'>Manicure</option>
         <option value = 'pedicure'>Pedicure</option>
         <option value = 'manipedi'>Manicure and Pedicure</option>
         </select><br>
+    <br>
     <input type = 'submit' value = 'Submit'>
     </form>
+</div>
 </body>
 </html>
