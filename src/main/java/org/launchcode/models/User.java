@@ -1,9 +1,6 @@
 package org.launchcode.models;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class User {
     @NotBlank(message = "Username is required")
@@ -15,7 +12,8 @@ public class User {
     @Size(min = 6, message = "Password must be at least 6 characters long")
     private String password;
     private int id;
-
+    @NotNull(message = "Passwords do not match+")
+    private String verifyPassword;
 
     public User() {
 
@@ -58,6 +56,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+        checkPassword(password, verifyPassword);
+    }
+
+    public String getVerifyPassword() {
+        return verifyPassword;
+    }
+
+    public void setVerifyPassword(String verifyPassword) {
+        this.verifyPassword = verifyPassword;
+        checkPassword(password, verifyPassword);
+    }
+
+    private void checkPassword(String password, String verifyPassword){
+        if(!password.isBlank() && !verifyPassword.isBlank() && !password.equals(verifyPassword)){
+            verifyPassword= null;
+        }
     }
 }
 
