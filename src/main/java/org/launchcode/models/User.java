@@ -12,7 +12,7 @@ public class User {
     @Size(min = 6, message = "Password must be at least 6 characters long")
     private String password;
     private int id;
-    @NotNull(message = "Passwords do not match+")
+    @NotBlank(message = "Passwords do not match")
     private String verifyPassword;
 
     public User() {
@@ -56,7 +56,7 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-        checkPassword(password, verifyPassword);
+        checkPassword();
     }
 
     public String getVerifyPassword() {
@@ -65,11 +65,11 @@ public class User {
 
     public void setVerifyPassword(String verifyPassword) {
         this.verifyPassword = verifyPassword;
-        checkPassword(password, verifyPassword);
+        checkPassword();
     }
 
-    private void checkPassword(String password, String verifyPassword){
-        if(!password.isBlank() && !verifyPassword.isBlank() && !password.equals(verifyPassword)){
+    private void checkPassword(){
+        if(this.password != null && this.verifyPassword != null && !this.password.equals(this.getVerifyPassword())){
             verifyPassword= null;
         }
     }
